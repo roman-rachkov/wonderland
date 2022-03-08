@@ -1,0 +1,37 @@
+---
+- name: Update apt packages
+  # become: yes
+  apt:
+    update_cache: yes
+
+- name: Add certbot repository
+  # become: yes
+  apt_repository:
+    repo: "deb http://deb.debian.org/debian buster-backports main"
+    state: present
+    update_cache: yes
+
+- name: Install Certbot
+  # become: yes
+  apt:
+    name: certbot
+    state: present
+    update_cache: yes
+
+- name: Copy Certbot configuration
+  copy:
+    src: files/cli.ini
+    dest: /etc/letsencrypt/cli.ini
+    owner: ubuntu
+    group: ubuntu
+    mode: 0644
+
+- name: Remove useless packages
+  # become: yes
+  apt:
+    autoclean: yes
+
+- name: Remove useless dependencies
+  # become: yes
+  apt:
+    autoremove: yes

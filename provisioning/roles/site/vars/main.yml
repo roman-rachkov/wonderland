@@ -1,0 +1,5 @@
+certbot_email: pakycb84@gmail.com
+certbot_hosts:
+  - easy-auction.tk
+  - api.easy-auction.tk
+  - registry.easy-auction.tk
