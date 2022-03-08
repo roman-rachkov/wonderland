@@ -33,7 +33,7 @@ api-clear:
 	docker run --rm -v ${PWD}/backend:/app -w /app alpine sh -c 'rm -rf var/*'
 
 api-permission:
-	docker run --rm -v ${PWD}/backend:/app -w /app alpine chmod -R 777 storage
+	docker run --rm -v ${PWD}/backend:/app -w /app alpine chmod -R 777 storage bootstrap/cache
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install

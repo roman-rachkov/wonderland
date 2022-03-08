@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function (){
+//    phpinfo();
+    return env('APP_URL').'|<a href="'.route('hello').'">hello</a>';
+})->name('test');
+
+Route::get('/hello', function (){
+    return '<a href="'.route('test').'">test</a>';
+})->name('hello');
