@@ -27,6 +27,7 @@ services:
       - ./backend:/app
     depends_on:
       - api-php-fpm
+      - api-mariadb
 
   api-php-fpm:
     build:
@@ -47,3 +48,15 @@ services:
     environment:
       DEBUG: 1
       APP_ENV: dev
+  api-mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: dbpass
+      MARIADB_DATABASE: wonderland
+    volumes:
+      - database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  database:

@@ -5,13 +5,15 @@ RUN apk update && apk add autoconf g++ make \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable xdebug
 
+RUN apk add curl-dev zip unzip zlib-dev libpng-dev oniguruma-dev \
+    && docker-php-ext-install gd pdo pdo_mysql curl mbstring \
+    && pecl install redis \
+    && docker-php-ext-enable redis
+
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
 COPY ./common/php/conf.d /usr/local/etc/php/conf.d
 COPY ./development/php/conf.d /usr/local/etc/php/conf.d
-
-RUN apk add unzip
-
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 

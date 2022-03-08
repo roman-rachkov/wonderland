@@ -34,3 +34,15 @@ services:
     environment:
       DEBUG: 0
       APP_ENV: prod
+  api-mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: dbpass
+      MARIADB_DATABASE: wonderland
+    volumes:
+      - database:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  database:

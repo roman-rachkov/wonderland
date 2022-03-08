@@ -17,6 +17,11 @@ RUN composer install --no-dev --prefer-dist --no-progress --no-scripts --optimiz
 
 FROM php:8.1-cli-alpine
 
+RUN apk add curl-dev zip unzip zlib-dev libpng-dev oniguruma-dev \
+    && docker-php-ext-install gd pdo pdo_mysql curl mbstring \
+    && pecl install redis \
+    && docker-php-ext-enable redis
+
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
 COPY ./docker/common/php/conf.d /usr/local/etc/php/conf.d

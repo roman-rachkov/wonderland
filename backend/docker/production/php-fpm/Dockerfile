@@ -19,6 +19,11 @@ FROM php:8.1-fpm-alpine
 
 RUN docker-php-ext-install opcache
 
+RUN apk add curl-dev zip unzip zlib-dev libpng-dev oniguruma-dev \
+    && docker-php-ext-install gd pdo pdo_mysql curl mbstring \
+    && pecl install redis \
+    && docker-php-ext-enable redis
+
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
 COPY ./docker/common/php/conf.d /usr/local/etc/php/conf.d
