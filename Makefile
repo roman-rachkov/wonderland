@@ -1,4 +1,7 @@
-init: docker-down-clear api-clear docker-pull docker-build up api-init
+init: docker-down-clear \
+			api-clear frontend-clear \
+			docker-pull docker-build up \
+			api-init frontend-init
 up: docker-up
 down: docker-down
 restart: down up
@@ -65,6 +68,14 @@ api-test-unit:
 
 api-test-unit-coverage:
 	docker-compose run --rm api-php-cli composer test-coverage -- --testsuit=unit
+
+frontend-clear:
+	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf .nuxt'
+
+frontend-init: frontend-npm-install
+
+frontend-npm-install:
+	docker-compose run --rm frontend-node-cli npm install
 
 build: build-gateway build-frontend build-api
 
