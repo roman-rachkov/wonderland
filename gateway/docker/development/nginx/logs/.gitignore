@@ -1,1 +1,3 @@
 ./*.log
+/error.log
+/access.log

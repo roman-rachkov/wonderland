@@ -11,17 +11,17 @@ services:
     volumes:
       - ./gateway:/app
     depends_on:
-      - frontend
+      - frontend-node
       - api
 
-  frontend:
-    build:
-      context: frontend/docker
-      dockerfile: development/nginx/Dockerfile
-    volumes:
-      - ./frontend:/app
-    depends_on:
-      - frontend-node
+#  frontend:
+#    build:
+#      context: frontend/docker
+#      dockerfile: development/nginx/Dockerfile
+#    volumes:
+#      - ./frontend:/app
+#    depends_on:
+#      - frontend-node
 
   frontend-node:
     build:

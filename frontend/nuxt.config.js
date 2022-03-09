@@ -47,7 +47,15 @@ export default {
   build: {
   },
 
+  watchers: {
+    webpack: {
+      poll: true
+    }
+  },
+
   server: {
     host: '0'
-  }
+  },
+
+  ssr: false
 }
