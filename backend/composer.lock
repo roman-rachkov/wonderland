@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c50a2c943187534f21f5fccc7262de36",
+    "content-hash": "15f4525cbc6a7d538bbc0ea7f93c49ca",
     "packages": [
         {
             "name": "brick/math",
@@ -895,16 +895,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.3.1",
+            "version": "v9.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "c1c4404511b83fbf90ccbcdf864d4a85537f35e4"
+                "reference": "29f0aaade82eadd20ef881b4efb88b0dad4e9a5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/c1c4404511b83fbf90ccbcdf864d4a85537f35e4",
-                "reference": "c1c4404511b83fbf90ccbcdf864d4a85537f35e4",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/29f0aaade82eadd20ef881b4efb88b0dad4e9a5b",
+                "reference": "29f0aaade82eadd20ef881b4efb88b0dad4e9a5b",
                 "shasum": ""
             },
             "require": {
@@ -1070,7 +1070,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-03-03T15:15:10+00:00"
+            "time": "2022-03-08T16:17:00+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2240,16 +2240,16 @@
         },
         {
             "name": "orchid/platform",
-            "version": "12.2.0",
+            "version": "12.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchidsoftware/platform.git",
-                "reference": "4cd8c4a52b33205e613473e7d8fb8938d0cae5cd"
+                "reference": "b4abbb4434c28b7020078b95a18f75e67943c989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchidsoftware/platform/zipball/4cd8c4a52b33205e613473e7d8fb8938d0cae5cd",
-                "reference": "4cd8c4a52b33205e613473e7d8fb8938d0cae5cd",
+                "url": "https://api.github.com/repos/orchidsoftware/platform/zipball/b4abbb4434c28b7020078b95a18f75e67943c989",
+                "reference": "b4abbb4434c28b7020078b95a18f75e67943c989",
                 "shasum": ""
             },
             "require": {
@@ -2341,7 +2341,7 @@
                     "type": "opencollective"
                 }
             ],
-            "time": "2022-03-05T16:22:26+00:00"
+            "time": "2022-03-08T10:24:19+00:00"
         },
         {
             "name": "phpoption/phpoption",
