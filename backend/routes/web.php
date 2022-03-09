@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function (){
-//    phpinfo();
-    return env('APP_URL').'|<a href="'.route('hello').'">hello</a>';
+    echo env('APP_URL').'|<a href="'.route('hello').'">hello</a>';
+    phpinfo();
 })->name('test');
 
 Route::get('/hello', function (){
