@@ -30,7 +30,7 @@ docker-pull:
 docker-build:
 	docker-compose build --pull
 
-api-init: api-composer-install api-permission
+api-init: api-composer-install api-permission api-migrate-clear
 
 api-clear:
 	docker run --rm -v ${PWD}/backend:/app -w /app alpine sh -c 'rm -rf var/*'
@@ -68,6 +68,21 @@ api-test-unit:
 
 api-test-unit-coverage:
 	docker-compose run --rm api-php-cli composer test-coverage -- --testsuit=unit
+
+api-route-list:
+	docker-compose run --rm api-php-cli php artisan route:list
+
+api-migrate:
+	docker-compose run --rm api-php-cli php artisan migrate
+
+api-migrate-clear:
+	docker-compose run --rm api-php-cli php artisan migrate:fresh
+	docker-compose run --rm api-php-cli php artisan orchid:admin admin admin@mail.com secret
+
+clear-logs:
+		docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf docker/development/nginx/logs/*.log'
+		docker run --rm -v ${PWD}/gateway:/app -w /app alpine sh -c 'rm -rf docker/development/nginx/logs/*.log'
+		docker run --rm -v ${PWD}/backend:/app -w /app alpine sh -c 'rm -rf storage/logs/*.log'
 
 frontend-clear:
 	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf .nuxt'

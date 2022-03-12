@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,6 @@ Route::get('/test', function (){
     phpinfo();
 })->name('test');
 
-Route::get('/hello', function (){
-    return '<a href="'.route('test').'">test</a>';
+Route::get('/hello', function () {
+    return '<a href="' . route('test') . '">test</a>';
 })->name('hello');
