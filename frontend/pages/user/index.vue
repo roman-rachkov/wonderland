@@ -1,12 +1,13 @@
 <template>
-  <div>
 
-  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
-
+  name: "index"
 }
 </script>
+
+<style scoped>
+
+</style>
