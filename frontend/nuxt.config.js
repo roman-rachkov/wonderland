@@ -21,7 +21,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~plugins/validate.js"
+    "~plugins/validate.js",
+    "~plugins/i18n.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -40,7 +41,14 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     '@nuxtjs/proxy',
+    '@nuxtjs/i18n'
   ],
+
+  i18n: {
+    locales: ['ru'],
+    defaultLocale: 'ru',
+    strategy: 'no-prefix',
+  },
 
   nuxtValidate: {
     lang: 'ru',
@@ -52,7 +60,10 @@ export default {
         provider: 'laravel/sanctum',
         url: 'http://localhost:8081'
       }
-    }
+    },
+    plugins: [
+      "~plugins/auth.js",
+    ]
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

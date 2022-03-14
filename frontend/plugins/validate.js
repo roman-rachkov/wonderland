@@ -1,26 +1,11 @@
-import {required, email, min} from 'vee-validate/dist/rules'
-import {extend, setInteractionMode} from 'vee-validate';
-// import Vue from 'vue';
+import * as rules from 'vee-validate/dist/rules'
+import {extend, setInteractionMode, localize} from 'vee-validate';
+import ru from 'vee-validate/dist/locale/ru.json';
 
 setInteractionMode('eager');
 
-extend(
-  'required', {
-    ...required,
-    'message': 'Поле не может быть пустым'
-  }
-);
+localize('ru', ru)
 
-extend(
-  'email', {
-    ...email,
-    'message': 'Email должен быть валидным'
-  }
-);
-
-extend(
-  'min', {
-    ...min,
-    'message': 'Поле должно иметь минимум {length} знаков'
-  }
-);
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule]);
+});

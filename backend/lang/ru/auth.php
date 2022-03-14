@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'failed' => 'User not found.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Учетная запись не найдена.',
+    'password' => 'Предоставленный пароль неверен.',
+    'throttle' => 'Слишком много попыток входа. Повторите попытку через :seconds секунд.',
 
 ];

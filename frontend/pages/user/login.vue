@@ -65,6 +65,10 @@ export default {
     async login() {
       if (this.$refs.observer.validate()) {
         await this.$auth.loginWith('laravelSanctum', {data: {email: this.email, password: this.password}})
+          .catch(e =>{
+            console.log(e.response.data.errors);
+            this.$refs.observer.setErrors(e.response.data.errors)
+          });
       }
     }
   }
