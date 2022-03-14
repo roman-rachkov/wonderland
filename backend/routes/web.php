@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function (){
-    echo env('APP_URL').'|<a href="'.route('hello').'">hello</a>';
-    phpinfo();
-})->name('test');
-
-Route::get('/hello', function () {
-    return '<a href="' . route('test') . '">test</a>';
-})->name('hello');
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);

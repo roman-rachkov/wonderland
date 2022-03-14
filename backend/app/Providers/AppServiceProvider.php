@@ -27,6 +27,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Config::set('test.var', 'TestValue1');
     }
 }

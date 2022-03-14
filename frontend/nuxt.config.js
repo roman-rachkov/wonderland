@@ -40,7 +40,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/proxy',
+    // '@nuxtjs/proxy',
     '@nuxtjs/i18n'
   ],
 
@@ -69,15 +69,16 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'http://127.0.0.1:8081/api',
+    baseURL: 'http://localhost:8081',
     credentials: true,
-    proxy: true
+    proxy: false,
+    // prefix: '/laravel'
   },
 
-  proxy: {
-    '/api': {target: 'http://localhost:8081/api', pathRewrite: {'^/api': '/'}, changeOrigin: true},
-    '/laravel': {target: 'http://localhost:8081', pathRewrite: {'^/laravel': '/'}, changeOrigin: true}
-  },
+  // proxy: {
+  //   '/api': {target: 'http://localhost:8081', changeOrigin: true},
+  //   '/laravel': {target: 'http://localhost:8081', pathRewrite: {'^/laravel': ''}, changeOrigin: true}
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -92,5 +93,9 @@ export default {
     host: '0'
   },
 
-  ssr: false
+  ssr: false,
+
+  router: {
+    middleware: ['auth']
+  }
 }

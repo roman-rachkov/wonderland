@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar class="mb-3">
+  <v-app-bar class="mb-3 sticky">
     <nuxt-link :to="{name: 'index'}" class="logo">
       <v-toolbar-title>Wonderland</v-toolbar-title>
     </nuxt-link>
@@ -26,5 +26,9 @@ export default {
   text-transform: uppercase;
   color: black;
 }
-
+.sticky{
+  top: 0;
+  position: sticky;
+  z-index: 1500000;
+}
 </style>

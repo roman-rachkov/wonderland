@@ -50,6 +50,7 @@
 import {ValidationObserver, ValidationProvider} from 'vee-validate';
 
 export default {
+  auth: 'guest',
   components: {
     ValidationObserver, ValidationProvider
   },
@@ -65,9 +66,12 @@ export default {
     async login() {
       if (this.$refs.observer.validate()) {
         await this.$auth.loginWith('laravelSanctum', {data: {email: this.email, password: this.password}})
+          .then(() => {
+            this.$router.push({name: 'index'});
+          })
           .catch(e =>{
             console.log(e.response.data.errors);
-            this.$refs.observer.setErrors(e.response.data.errors)
+            this.$refs.observer.setErrors(e.response.data.errors);
           });
       }
     }
