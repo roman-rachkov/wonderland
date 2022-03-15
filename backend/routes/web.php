@@ -14,3 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+
+Route::any('/', function (\Illuminate\Http\Request $request) {
+    dump($request);
+    dump(App::environment('local'));
+});

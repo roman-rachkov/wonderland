@@ -72,6 +72,11 @@ api-test-unit-coverage:
 api-route-list:
 	docker-compose run --rm api-php-cli php artisan route:list
 
+api-optimize:
+	docker-compose run --rm api-php-cli php artisan optimize
+	docker-compose run --rm api-php-cli php artisan view:clear
+	docker-compose run --rm api-php-cli php artisan cache:clear
+
 api-migrate:
 	docker-compose run --rm api-php-cli php artisan migrate
 

@@ -91,6 +91,8 @@ return [
 
     'middleware' => ['web'],
 
+//    'auth_middleware' => 'auth:sanctum',
+
     /*
     |--------------------------------------------------------------------------
     | Rate Limiting
@@ -134,7 +136,7 @@ return [
     'features' => [
         Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([

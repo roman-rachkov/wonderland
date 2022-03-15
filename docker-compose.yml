@@ -56,8 +56,6 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DEBUG: 1
-      APP_ENV: local
       PHP_IDE_CONFIG: serverName=API
     depends_on:
      - api-mariadb
@@ -70,8 +68,7 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DEBUG: 1
-      APP_ENV: dev
+      PHP_IDE_CONFIG: serverName=API
     depends_on:
       - api-mariadb
       - mailhog
