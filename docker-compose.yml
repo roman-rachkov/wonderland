@@ -48,7 +48,6 @@ services:
       - ./backend:/app
     depends_on:
       - api-php-fpm
-      - api-mariadb
 
   api-php-fpm:
     build:
@@ -60,6 +59,10 @@ services:
       DEBUG: 1
       APP_ENV: local
       PHP_IDE_CONFIG: serverName=API
+    depends_on:
+     - api-mariadb
+     - mailhog
+
   api-php-cli:
     build:
       context: backend/docker
@@ -69,6 +72,9 @@ services:
     environment:
       DEBUG: 1
       APP_ENV: dev
+    depends_on:
+      - api-mariadb
+      - mailhog
   api-mariadb:
     image: mariadb
     restart: always
@@ -79,5 +85,12 @@ services:
       - database:/var/lib/mysql
     ports:
       - "3306:3306"
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
 volumes:
   database:
