@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "_hash",
+  name: "EmailVerifyIdHash",
   mounted() {
     this.$axios.$get('/sanctum/csrf-cookie')
     .then(() => {

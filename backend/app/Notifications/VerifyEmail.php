@@ -10,9 +10,8 @@ class VerifyEmail extends VerifyEmailNotification
     protected function verificationUrl($notifiable)
     {
         URL::forceRootUrl(config('app.frontend_url'));
-        return URL::temporarySignedRoute(
+        return route(
             'verification.verify',
-            now()->addDays(),
             ['id' => $notifiable->getKey(), 'hash' => sha1($notifiable->getEmailForVerification())]
         );
     }
