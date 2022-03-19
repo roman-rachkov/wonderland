@@ -83,6 +83,37 @@ services:
     ports:
       - "3306:3306"
 
+  redis:
+    image: redis:alpine
+    command:
+      - redis-server
+      - --appendonly yes
+      - --requirepass $$REDISCLI_AUTH
+    environment:
+      REDISCLI_AUTH: secret@123
+    restart: unless-stopped
+    volumes:
+      - redis-vol:/data
+    ports:
+      - "6379:6379"
+
+  laravel-echo-server:
+    image: oanhnn/laravel-echo-server:latest
+    depends_on:
+      - redis
+    environment:
+      LARAVEL_ECHO_SERVER_AUTH_HOST: http://localhost:8081
+      LARAVEL_ECHO_SERVER_DEBUG: 'true'
+      LARAVEL_ECHO_SERVER_DB: redis
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PREFIX: laravel_
+      REDIS_PASSWORD: secret@123
+      REDIS_DB: 0
+    ports:
+      - "6001:6001"
+    restart: unless-stopped
+
   mailhog:
     image: mailhog/mailhog:latest
     ports:
@@ -91,3 +122,4 @@ services:
 
 volumes:
   database:
+  redis-vol:
