@@ -67,7 +67,7 @@ export default {
       if (this.$refs.observer.validate()) {
         await this.$auth.loginWith('laravelSanctum', {data: {email: this.email, password: this.password}})
           .then(() => {
-            this.$router.push({name: 'index'});
+            this.$router.push({name: 'game'});
           })
           .catch(e =>{
             console.log(e.response.data.errors);

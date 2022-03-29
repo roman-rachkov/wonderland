@@ -5,15 +5,6 @@ init: docker-down-clear \
 up: docker-up
 down: docker-down
 restart: down up
-check: lint analyze test
-lint: api-lint
-analyze: api-analyze
-test: api-test
-test-coverage: api-test-coverage
-test-functional: api-test-functional
-test-functional-coverage: api-test-functional-coverage
-test-unit: api-test-unit
-test-unit-coverage: api-test-unit-coverage
 
 docker-up:
 	docker-compose up -d
@@ -32,6 +23,9 @@ docker-build:
 
 api-init: api-composer-install api-permission api-migrate-clear
 
+api-horizon:
+	docker-compose run --rm api-php-cli php artisan horizon
+
 api-clear:
 	docker run --rm -v ${PWD}/backend:/app -w /app alpine sh -c 'rm -rf var/*'
 
@@ -39,35 +33,7 @@ api-permission:
 	docker run --rm -v ${PWD}/backend:/app -w /app alpine chmod -R 777 storage bootstrap/cache
 
 api-composer-install:
-	docker-compose run --rm api-php-cli composer install
-
-api-lint-fix:
-	docker-compose run --rm api-php-cli composer cs-fix
-
-api-lint:
-	docker-compose run --rm api-php-cli composer lint
-	docker-compose run --rm api-php-cli composer cs-check
-
-api-analyze:
-	docker-compose run --rm api-php-cli composer psalm
-
-api-test:
-	docker-compose run --rm api-php-cli composer test
-
-api-test-coverage:
-	docker-compose run --rm api-php-cli composer test-coverage
-
-api-test-functional:
-	docker-compose run --rm api-php-cli composer test -- --testsuit=functional
-
-api-test-functional-coverage:
-	docker-compose run --rm api-php-cli composer test-coverage -- --testsuit=functional
-
-api-test-unit:
-	docker-compose run --rm api-php-cli composer test -- --testsuit=unit
-
-api-test-unit-coverage:
-	docker-compose run --rm api-php-cli composer test-coverage -- --testsuit=unit
+	docker-compose run --rm api-php-cli composer install --ignore-platform-reqs
 
 api-route-list:
 	docker-compose run --rm api-php-cli php artisan route:list

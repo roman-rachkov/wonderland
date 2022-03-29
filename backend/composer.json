@@ -6,13 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-pcntl": "*",
+        "ext-posix": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "laravel/fortify": "^1.11",
-        "laravel/framework": "^9.2",
+        "laravel/fortify": "^v1.11.2",
+        "laravel/framework": "^v9.5.1",
+        "laravel/horizon": "5.9.3",
         "laravel/sanctum": "^2.14",
         "laravel/telescope": "^4.7",
         "laravel/tinker": "^2.7",
-        "orchid/platform": "^12.2",
+        "orchid/platform": "^12.2.1",
         "predis/predis": "^1.1"
     },
     "require-dev": {

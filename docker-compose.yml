@@ -8,6 +8,7 @@ services:
     ports:
       - "8080:8080"
       - "8081:8081"
+      - "6001:6001"
     volumes:
       - ./gateway:/app
     depends_on:
@@ -72,6 +73,16 @@ services:
     depends_on:
       - api-mariadb
       - mailhog
+  api-horizon:
+    build:
+      context: backend/docker
+      dockerfile: development/php-cli/Dockerfile
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - api-mariadb
+      - mailhog
+    entrypoint: ['php', 'artisan', 'horizon']
   api-mariadb:
     image: mariadb
     restart: always
@@ -88,9 +99,9 @@ services:
     command:
       - redis-server
       - --appendonly yes
-      - --requirepass $$REDISCLI_AUTH
-    environment:
-      REDISCLI_AUTH: secret@123
+#      - --requirepass $$REDISCLI_AUTH
+#    environment:
+#      REDISCLI_AUTH: secret@123
     restart: unless-stopped
     volumes:
       - redis-vol:/data
@@ -102,16 +113,17 @@ services:
     depends_on:
       - redis
     environment:
-      LARAVEL_ECHO_SERVER_AUTH_HOST: http://localhost:8081
+      LARAVEL_ECHO_SERVER_AUTH_HOST: "http://api:8081"
+      LARAVEL_ECHO_SERVER_AUTH_PORT: 8081
       LARAVEL_ECHO_SERVER_DEBUG: 'true'
       LARAVEL_ECHO_SERVER_DB: redis
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_PREFIX: laravel_
-      REDIS_PASSWORD: secret@123
+#      REDIS_PASSWORD: secret@123
       REDIS_DB: 0
     ports:
-      - "6001:6001"
+      - "8001:6001"
     restart: unless-stopped
 
   mailhog:

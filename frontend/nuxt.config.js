@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Wonderlan',
+    title: 'Wonderland',
     htmlAttrs: {
       lang: 'en'
     },
@@ -30,8 +30,19 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/laravel-echo'
   ],
+
+  echo: {
+    broadcaster: 'socket.io',
+    authModule: true,
+    connectOnLogin: true,
+    disconnectOnLogout: true,
+    // plugins: ['~/plugins/echo.js']
+    host: 'http://localhost:8001',
+    // transports: ['websocket']
+  },
 
   vuetify: {},
 
@@ -47,7 +58,7 @@ export default {
   i18n: {
     locales: ['ru'],
     defaultLocale: 'ru',
-    strategy: 'no-prefix',
+    strategy: 'no_prefix',
   },
 
   nuxtValidate: {

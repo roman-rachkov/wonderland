@@ -9,7 +9,9 @@ export default {
     this.$axios.$get('/sanctum/csrf-cookie')
     .then(() => {
       this.$axios.$get(this.$route.fullPath)
-        .then(r => console.log(r))
+        .then(r => {
+          this.$router.push({name: 'game'})
+        })
         .catch(e => console.log(e.response));
     })
   }
